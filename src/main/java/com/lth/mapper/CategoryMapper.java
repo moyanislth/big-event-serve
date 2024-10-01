@@ -1,10 +1,7 @@
 package com.lth.mapper;
 
 import com.lth.pojo.Category;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -26,4 +23,7 @@ public interface CategoryMapper {
     // update category
     @Update("UPDATE category SET category_name = #{categoryName}, category_alias = #{categoryAlias}, update_time = NOW() WHERE id = #{id}")
     void update(Category category);
+
+    @Delete("DELETE FROM category WHERE id = #{id}")
+    void deleate(Integer id);
 }

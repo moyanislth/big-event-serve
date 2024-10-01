@@ -10,7 +10,7 @@ public class JwtUtil {
 
     private static final String KEY = "abc";
 	
-	//接收业务数据,生成token并返回
+	//接收业务数据,生成token并返回,数据存储在claims中用map存储
     public static String genToken(Map<String, Object> claims) {
         return JWT.create()
                 .withClaim("claims", claims)
@@ -24,8 +24,8 @@ public class JwtUtil {
         return JWT.require(Algorithm.HMAC256(KEY))
                 .build()
                 .verify(token)
-                .getClaim("claims")
-                .asMap();
+                .getClaim("claims")  // 获取业务数据
+                .asMap();  // 转换为map
     }
 
 }

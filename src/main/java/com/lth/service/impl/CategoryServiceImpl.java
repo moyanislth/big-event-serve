@@ -60,4 +60,9 @@ public class CategoryServiceImpl implements CategoryService {
     public void update(Category category) {
         categoryMapper.update(category);
     }
+
+    @Override
+    public void delete(Integer id) {
+        categoryMapper.deleate(id);
+    }
 }

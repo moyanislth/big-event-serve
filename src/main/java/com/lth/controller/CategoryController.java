@@ -2,6 +2,7 @@ package com.lth.controller;
 
 
 import com.lth.pojo.Category;
+import com.lth.pojo.PageBean;
 import com.lth.pojo.Result;
 import com.lth.service.CategoryService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +24,7 @@ public class CategoryController {
     @PostMapping
     public Result add(@RequestBody @Validated(Category.Add.class) Category category) {
         // add category
-
+        log.info("category: {}", category);
         categoryService.add(category);
         return Result.success();
     }
@@ -61,6 +62,19 @@ public class CategoryController {
 
         // update category
         categoryService.update(category);
+        return Result.success();
+    }
+
+    @DeleteMapping
+    public Result delete(@RequestParam Integer id) {
+
+        Category category = categoryService.findById(id);
+        if (category == null) {
+            return Result.error("Category does not exist");
+        }
+
+        // delete category
+        categoryService.delete(id);
         return Result.success();
     }
 
