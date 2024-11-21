@@ -66,7 +66,7 @@ public class CategoryController {
     }
 
     @DeleteMapping
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@PathVariable("id") Integer id) {
 
         Category category = categoryService.findById(id);
         if (category == null) {
